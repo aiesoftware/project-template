@@ -1,0 +1,13 @@
+default:
+  suites:
+    some-domaim:
+      paths:
+        - "%paths.base%/tests/acceptance/SomeDomain"
+      contexts:
+        - Tests\Acceptance\SomeDomain\features\bootstrap\FeatureContext
+
+  extensions:
+    Zalas\Behat\NoExtension:
+      argument_resolver: true
+      imports:
+        - "%paths.base%/tests/acceptance/services.yml"
