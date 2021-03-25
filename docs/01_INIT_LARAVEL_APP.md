@@ -10,6 +10,24 @@ Create the project, then eject the Dockerfiles:
 > ./vendor/bin/sail down
 ```
 
+##### Pull in the domain library:
+```json
+require: {
+  ...
+  "test-project/domain": "*"
+},
+"repositories": [
+  {
+    "type": "path",
+    "url": "../../library/domain"
+  }
+]
+```
+
+```shell
+> ./vendor/bin/sail composer update
+```
+
 ##### Setup Docker with xDebug:
 
 Add the XDEBUG arg to `laravel.test` container in the already existing `docker-compose.yml`:

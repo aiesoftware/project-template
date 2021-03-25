@@ -1,0 +1,56 @@
+version: '3'
+services:
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        XDEBUG: 1
+    container_name: symfony-app
+    volumes:
+      - ./:/var/www
+      - ./docker/php-fpm/local.ini:/usr/local/etc/php/conf.d/local.ini
+    env_file:
+      - .env
+    environment:
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+    networks:
+      - symfony-app-network
+
+  webserver:
+    image: nginx:alpine
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
+      - ./docker/nginx/sites:/etc/nginx/sites-available
+    ports:
+      - "8090:80"
+      - "4433:443"
+    networks:
+      - symfony-app-network
+
+  db:
+    image: mysql:5.7.22
+    ports:
+      - "3311:3306"
+    environment:
+      MYSQL_DATABASE: concr
+      MYSQL_ROOT_PASSWORD: concr
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - dbdata:/var/lib/mysql
+      - ./docker/mysql/my.cnf:/etc/mysql/my.cnf
+    networks:
+      - symfony-app-network
+
+networks:
+  symfony-app-network:
+    driver: bridge
+
+volumes:
+  dbdata:
+    driver: local
