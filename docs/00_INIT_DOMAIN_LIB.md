@@ -41,6 +41,6 @@ We also pass in the .env.test which has the env var for xdebug CLI.
 And we also pass -t which gives us colour in the output:
 
 ```
-> docker run --env-file=.env.test -t -v$(pwd):/app <library-name>:latest vendor/bin/behat --format=progress
-> docker run --env-file=.env.test -t -v$(pwd):/app <library-name>:latest vendor/bin/phpunit
+> docker run --env-file=.env -t -v$(pwd):/app <library-name>:latest vendor/bin/behat --format=progress
+> docker run --env-file=.env -t -v$(pwd):/app <library-name>:latest vendor/bin/phpunit
 ```

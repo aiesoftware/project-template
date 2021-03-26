@@ -1,11 +1,11 @@
 ### Create the project
 
-```
+```shell
 > cd applications
-> composer create-project symfony/website-skeleton symfony-app
-> cp -r symfony-docker-template/ symfony-app/
+> composer create-project symfony/website-skeleton symfony
+> cp -r symfony-docker-template/ symfony/
 > rm -rf symfony-docker-template
-> cd symfony-app
+> cd symfony
 ```
 ##### Pull in the domain library:
 ```json

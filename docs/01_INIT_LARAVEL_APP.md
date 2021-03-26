@@ -3,8 +3,9 @@
 Create the project, then eject the Dockerfiles:
 
 ```shell
+> cd applications
 > curl -s "https://laravel.build/laravel" | bash
-
+> cd laravel
 > ./vendor/bin/sail up -d
 > ./vendor/bin/sail artisan sail:publish
 > ./vendor/bin/sail down
@@ -25,7 +26,7 @@ require: {
 ```
 
 ```shell
-> ./vendor/bin/sail composer update
+> composer update
 ```
 
 ##### Setup Docker with xDebug:
@@ -83,4 +84,7 @@ RUN php -r "readfile('http://getcomposer.org/installer');" | php -- --install-di
 Rebuild the container:
 ```shell
 > ./vendor/bin/sail build --no-cache
+> ./vendor/bin/sail up
 ```
+
+Access on `http://localhost`
