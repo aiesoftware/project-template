@@ -9,7 +9,7 @@
 ```
 ##### Pull in the domain library:
 ```json
-require: {
+"require": {
   ...
   "test-project/domain": "*"
 },
